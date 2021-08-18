@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="150dp"
         android:ems="10"
-        android:hint="Nama Barang"
+        android:hint="Nama Barang (Jenis, Warna, Merk)"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
