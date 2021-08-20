@@ -6,5 +6,8 @@
     <color name="red">#E94252</color>
     <color name="white">#ffffff</color>
     <color name="darkred">#6a040f</color>
+    <color name="black">#000000</color>
+    <color name="grey1">#f0efeb</color>
+    <color name="green">#52b69a</color>
 
 </resources>

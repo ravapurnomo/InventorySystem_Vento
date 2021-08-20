@@ -19,18 +19,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- <EditText
-         android:id="@+id/author_input"
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:layout_marginTop="16dp"
-         android:ems="10"
-         android:hint="Book Author"
-         android:inputType="textPersonName"
-         app:layout_constraintEnd_toEndOf="parent"
-         app:layout_constraintStart_toStartOf="parent"
-         app:layout_constraintTop_toBottomOf="@+id/title_input" />-->
-
     <EditText
         android:id="@+id/quantity_input"
         android:layout_width="match_parent"
@@ -42,6 +30,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/namaBarang_input" />
+
+        <EditText
+        android:id="@+id/keterangan_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Keterangan"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/quantity_input" />
+
 
     <Button
         android:id="@+id/add_button"
@@ -56,7 +57,7 @@
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/quantity_input" />
+        app:layout_constraintTop_toBottomOf="@+id/keterangan_input" />
 
     <ImageView
         android:id="@+id/logopins"
