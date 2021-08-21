@@ -11,13 +11,14 @@ import androidx.annotation.Nullable;
 class  MyDatabaseHelper extends SQLiteOpenHelper {
 
     private Context context;
-    private static final String DATABASE_NAME = "Vento.db";
+    private static final String DATABASE_NAME = "Vento2.db";
     private static final int DATABASE_VERSION = 1;
 
     private static final String TABLE_NAME = "Vento";
     private static final String COLUMN_ID = "_id";
     private static final String COLUMN_NAME = "nama_barang";
     private static final String COLUMN_QUANTITY = "jumlah_barang";
+    private static final String COLUMN_DESC = "ket_barang";
 
     MyDatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -29,7 +30,8 @@ class  MyDatabaseHelper extends SQLiteOpenHelper {
         String query = "CREATE TABLE " + TABLE_NAME +
                         " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                         COLUMN_NAME + " TEXT, " +
-                        COLUMN_QUANTITY + " INTEGER);";
+                        COLUMN_QUANTITY + " INTEGER, " +
+                        COLUMN_DESC + " TEXT);";
         db.execSQL(query);
     }
     @Override
@@ -38,12 +40,13 @@ class  MyDatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    void addBarang(String nama_barang, int jumlah_barang){
+    void addBarang(String nama_barang, int jumlah_barang, String keterangan_input){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
         cv.put(COLUMN_NAME, nama_barang);
         cv.put(COLUMN_QUANTITY, jumlah_barang);
+        cv.put(COLUMN_DESC, keterangan_input);
         long result = db.insert(TABLE_NAME,null, cv);
         if(result == -1){
             Toast.makeText(context, "Gagal", Toast.LENGTH_SHORT).show();

@@ -8,16 +8,26 @@
     android:padding="30dp">
 
     <EditText
+        android:id="@+id/id_barang2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:clickable="false"
+        android:enabled="false"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="30dp" />
+
+    <EditText
         android:id="@+id/nama_barang2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="Nama Barang"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/id_barang2" />
 
     <EditText
         android:id="@+id/jumlah_barang2"
@@ -49,11 +59,14 @@
         android:layout_height="40dp"
         android:layout_marginTop="24dp"
         android:hint="Pilih Proses"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/keterangan_input2"
-        tools:layout_editor_absoluteX="30dp"
-        tools:ignore="MissingConstraints" />
+        tools:layout_editor_absoluteX="30dp"/>
+        <!--tools:ignore="MissingConstraints"-->
 
-    <Button
+
+    <!--<Button
         android:id="@+id/update_button"
         android:layout_width="120dp"
         android:layout_height="70dp"
@@ -102,19 +115,33 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/update_button" />
+        app:layout_constraintTop_toBottomOf="@+id/update_button" />-->
 
     <Button
-        android:id="@+id/seedetail_button"
-        android:layout_width="match_parent"
+        android:id="@+id/okay_button"
+        android:layout_width="100dp"
         android:layout_height="70dp"
         android:layout_marginTop="60dp"
-        android:text="Lihat Detail Barang"
+        android:text="OK"
         android:textAllCaps="false"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/delete_button" />
+        app:layout_constraintTop_toBottomOf="@+id/static_spinner" />
+
+    <Button
+        android:id="@+id/seedetail_button"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginTop="88dp"
+        android:text="Lihat Detail Barang"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.266"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/okay_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

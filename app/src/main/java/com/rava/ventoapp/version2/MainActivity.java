@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     TextView no_data;
 
     MyDatabaseHelper myDB;
-    ArrayList<String> id_barang, nama_barang, jumlah_barang;
+    ArrayList<String> id_barang, nama_barang, jumlah_barang, ket_barang;
     CustomAdapter customAdapter;
 
     @Override
@@ -54,10 +54,11 @@ public class MainActivity extends AppCompatActivity {
         id_barang = new ArrayList<>();
         nama_barang = new ArrayList<>();
         jumlah_barang = new ArrayList<>();
+        ket_barang = new ArrayList<>();
 
         storeDataInArrays();
 
-        customAdapter = new CustomAdapter(MainActivity.this,this, id_barang, nama_barang, jumlah_barang);
+        customAdapter = new CustomAdapter(MainActivity.this,this, id_barang, nama_barang, jumlah_barang, ket_barang);
         recyclerView.setAdapter(customAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
 
@@ -81,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
                 id_barang.add(cursor.getString(0));
                 nama_barang.add(cursor.getString(1));
                 jumlah_barang.add(cursor.getString(2));
+                ket_barang.add(cursor.getString(3));
             }
             empty_imageview.setVisibility(View.GONE);
             no_data.setVisibility(View.GONE);

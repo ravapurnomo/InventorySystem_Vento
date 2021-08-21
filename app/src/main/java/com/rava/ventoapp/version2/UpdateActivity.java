@@ -4,6 +4,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,25 +12,31 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.widget.Spinner;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AdapterView.OnItemSelectedListener;
 
 import com.rava.ventoapp.version2.R;
 
 public class UpdateActivity extends AppCompatActivity {
 
-    EditText nama_barang, jumlah_barang;
-    Button update_button, delete_button;
+    EditText id_barang, nama_barang, jumlah_barang, ket_barang;
+    /*Button update_button, delete_button;*/
 
-    String id, nama, jumlah;
+    String id, nama, jumlah, keterangan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update);
 
+        id_barang = findViewById(R.id.id_barang2);
         nama_barang = findViewById(R.id.nama_barang2);
         jumlah_barang = findViewById(R.id.jumlah_barang2);
-        update_button = findViewById(R.id.update_button);
-        delete_button = findViewById(R.id.delete_button);
+        ket_barang = findViewById(R.id.keterangan_input2);
+/*        update_button = findViewById(R.id.update_button);
+        delete_button = findViewById(R.id.delete_button);*/
 
         //First we call this
         getAndSetIntentData();
@@ -39,8 +46,22 @@ public class UpdateActivity extends AppCompatActivity {
         if (ab != null) {
             ab.setTitle(nama);
         }
+        Spinner staticSpinner = (Spinner) findViewById(R.id.static_spinner);
 
-        update_button.setOnClickListener(new View.OnClickListener() {
+        // Create an ArrayAdapter using the string array and a default spinner
+        ArrayAdapter<CharSequence> staticAdapter = ArrayAdapter
+                .createFromResource(this, R.array.brew_array,
+                        android.R.layout.simple_spinner_item);
+
+        // Specify the layout to use when the list of choices appears
+        staticAdapter
+                .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // Apply the adapter to the spinner
+        staticSpinner.setAdapter(staticAdapter);
+
+
+/*        update_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //And only then we call this
@@ -55,7 +76,7 @@ public class UpdateActivity extends AppCompatActivity {
             public void onClick(View view) {
                 confirmDialog();
             }
-        });
+        });*/
 
     }
 
@@ -65,11 +86,14 @@ public class UpdateActivity extends AppCompatActivity {
             id = getIntent().getStringExtra("id");
             nama = getIntent().getStringExtra("nama");
             jumlah = getIntent().getStringExtra("jumlah");
+            keterangan = getIntent().getStringExtra("keterangan");
 
             //Setting Intent Data
+            id_barang.setText(id);
             nama_barang.setText(nama);
             jumlah_barang.setText(jumlah);
-            Log.d("vento", nama+" "+jumlah);
+            ket_barang.setText(keterangan);
+            Log.d("vento", nama+" "+jumlah+" "+keterangan+" ");
         }else{
             Toast.makeText(this, "Tidak ada data.", Toast.LENGTH_SHORT).show();
         }

@@ -24,15 +24,16 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     private Context context;
     private Activity activity;
-    private ArrayList id_barang, nama_barang, jumlah_barang;
+    private ArrayList id_barang, nama_barang, jumlah_barang, ket_barang;
 
     CustomAdapter(Activity activity, Context context, ArrayList id_barang, ArrayList nama_barang,
-                  ArrayList jumlah_barang){
+                  ArrayList jumlah_barang, ArrayList ket_barang){
         this.activity = activity;
         this.context = context;
         this.id_barang = id_barang;
         this.nama_barang = nama_barang;
         this.jumlah_barang = jumlah_barang;
+        this.ket_barang = ket_barang;
     }
 
     @NonNull
@@ -49,6 +50,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         holder.id_barang_txt.setText(String.valueOf(id_barang.get(position)));
         holder.nama_barang_txt.setText(String.valueOf(nama_barang.get(position)));
         holder.jumlah_barang_txt.setText(String.valueOf(jumlah_barang.get(position)));
+        holder.ket_barang_txt.setText(String.valueOf(ket_barang.get(position)));
         //Recyclerview onClickListener
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +59,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
                 intent.putExtra("id", String.valueOf(id_barang.get(position)));
                 intent.putExtra("nama", String.valueOf(nama_barang.get(position)));
                 intent.putExtra("jumlah", String.valueOf(jumlah_barang.get(position)));
+                intent.putExtra("keterangan" , String.valueOf((ket_barang.get(position))));
                 activity.startActivityForResult(intent, 1);
             }
         });
@@ -71,7 +74,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView id_barang_txt, nama_barang_txt, jumlah_barang_txt;
+        TextView id_barang_txt, nama_barang_txt, jumlah_barang_txt, ket_barang_txt;
         LinearLayout mainLayout;
 
         MyViewHolder(@NonNull View itemView) {
@@ -79,6 +82,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             id_barang_txt = itemView.findViewById(R.id.id_barang_txt);
             nama_barang_txt = itemView.findViewById(R.id.nama_barang_txt);
             jumlah_barang_txt = itemView.findViewById(R.id.jumlah_barang_txt);
+            ket_barang_txt = itemView.findViewById(R.id.ket_barang_txt);
             mainLayout = itemView.findViewById(R.id.mainLayout);
             //Animate Recyclerview
             Animation translate_anim = AnimationUtils.loadAnimation(context, R.anim.translate_anim);
