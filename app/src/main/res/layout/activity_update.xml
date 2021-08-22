@@ -121,12 +121,13 @@
         android:id="@+id/okay_button"
         android:layout_width="100dp"
         android:layout_height="70dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="36dp"
         android:text="OK"
         android:textAllCaps="false"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/static_spinner" />
 
@@ -134,13 +135,12 @@
         android:id="@+id/seedetail_button"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="28dp"
         android:text="Lihat Detail Barang"
         android:textAllCaps="false"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.266"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/okay_button" />
 

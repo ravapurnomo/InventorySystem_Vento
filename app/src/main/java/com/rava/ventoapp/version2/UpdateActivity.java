@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,12 +20,19 @@ import android.widget.AdapterView.OnItemSelectedListener;
 
 import com.rava.ventoapp.version2.R;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class UpdateActivity extends AppCompatActivity {
 
     EditText id_barang, nama_barang, jumlah_barang, ket_barang;
-    /*Button update_button, delete_button;*/
+    Button okay_button;
+    Spinner dropdown;
 
     String id, nama, jumlah, keterangan;
+    MyDatabaseHelper myDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +43,8 @@ public class UpdateActivity extends AppCompatActivity {
         nama_barang = findViewById(R.id.nama_barang2);
         jumlah_barang = findViewById(R.id.jumlah_barang2);
         ket_barang = findViewById(R.id.keterangan_input2);
-/*        update_button = findViewById(R.id.update_button);
-        delete_button = findViewById(R.id.delete_button);*/
+        okay_button = findViewById(R.id.okay_button);
+        dropdown = findViewById(R.id.static_spinner);
 
         //First we call this
         getAndSetIntentData();
@@ -60,7 +68,45 @@ public class UpdateActivity extends AppCompatActivity {
         // Apply the adapter to the spinner
         staticSpinner.setAdapter(staticAdapter);
 
+        okay_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                final int idBarang = Integer.parseInt(id);
+                String namaBarang = nama_barang.getText().toString();
+                String ketBarang = ket_barang.getText().toString();
+                int updateJumlah = Integer.parseInt(jumlah_barang.getText().toString());
+                String dropdownHistory = dropdown.getSelectedItem().toString();
+                String jumlahTotal = "";
+                if (dropdownHistory.equals("Barang Masuk")) {
+                    jumlahTotal = String.valueOf(Integer.parseInt(jumlah) + Integer.parseInt(jumlah_barang.getText().toString()));
+                } else if (dropdownHistory.equals("Barang Keluar")) {
+                    jumlahTotal = String.valueOf(Integer.parseInt(jumlah) - Integer.parseInt(jumlah_barang.getText().toString()));
+                }
+                else if (dropdownHistory.equals("Hapus")) {
+                            MyDatabaseHelper myDB = new MyDatabaseHelper(UpdateActivity.this);
+                            myDB.deleteOneRow(id);
+                            finish();
+                }
+                else {
+                    jumlahTotal = jumlah;
+                }
+
+
+                Date date = Calendar.getInstance().getTime();
+                DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+                String strDate = dateFormat.format(date);
+
+                MyDatabaseHelper myDB = new MyDatabaseHelper(UpdateActivity.this);
+                myDB.updateBarang(idBarang, ketBarang, strDate, updateJumlah, dropdownHistory);
+                myDB.updateData(id, namaBarang, jumlahTotal, ketBarang);
+
+
+            }
+        });
+      /*  detail_button.setOnClickListener(
+
+        );*/
 /*        update_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,7 +123,17 @@ public class UpdateActivity extends AppCompatActivity {
                 confirmDialog();
             }
         });*/
-
+       /* myDB = new MyDatabaseHelper(UpdateActivity.this);
+        Cursor cursor = myDB.readAllDataHistory();
+        int a = cursor.getCount();
+        while (cursor.moveToNext()){
+            String idBarang = (cursor.getString(0));
+            String ketBarang = (cursor.getString(1));
+            String strDate = (cursor.getString(2));
+            String jumlahBarang = (cursor.getString(3));
+            String dropdown = (cursor.getString(4));
+            String b = "";
+        }*/
     }
 
     void getAndSetIntentData(){

@@ -2,10 +2,9 @@
     <string name="app_name">Vento by PINS Jabar</string>
     <!--<string name="dropdown">Pilih Proses-->
         <string-array name="brew_array">
-            <item>Data Masuk</item>
-            <item>Espresso</item>
-            <item>Mocha</item>
-            <item>Caffè Americano</item>
-            <item>Cafe Zorro</item>
+            <item>Barang Masuk</item>
+            <item>Barang Keluar</item>
+            <item>Ubah Nama dan Keterangan</item>
+            <item>Hapus</item>
         </string-array>
 </resources>

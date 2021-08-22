@@ -10,19 +10,19 @@
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp">
+        android:layout_marginTop="5dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="12dp">
+            android:padding="10dp">
 
             <TextView
                 android:id="@+id/id_barang_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1"
-                android:textSize="40sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="#000"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
-                android:text="Title 1"
+                android:text="Nama Barang"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="#000"
@@ -55,7 +55,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="120"
-                android:textSize="18sp"
+                android:textSize="30sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -65,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
-                android:text="Ket"
+                android:text="Keterangan"
                 android:textSize="16sp"
                 android:textStyle="italic"
                 android:textColor="#000"
