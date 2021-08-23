@@ -22,6 +22,7 @@ class  MyDatabaseHelper extends SQLiteOpenHelper {
 
     private static final String TABLE_NAME_HISTORY = "VentoHst";
     private static final String COLUMN_ID_HISTORY = "_id";
+    private static final String COLUMN_NAME_HISTORY = "nama_barang_history";
     private static final String COLUMN_DESC_HISTORY = "ket_barang_history";
     private static final String COLUMN_DATE_HISTORY = "tgl_barang_history";
     private static final String COLUMN_QUANTITY_HISTORY = "update_jumlah_history";
@@ -44,6 +45,7 @@ class  MyDatabaseHelper extends SQLiteOpenHelper {
 
         String query_history = "CREATE TABLE " + TABLE_NAME_HISTORY +
                 " (" + COLUMN_ID_HISTORY + " INTEGER, " +
+                COLUMN_NAME_HISTORY + " TEXT, " +
                 COLUMN_DESC_HISTORY + " TEXT, " +
                 COLUMN_DATE_HISTORY + " TEXT, " +
                 COLUMN_QUANTITY_HISTORY + " INTEGER, " +
@@ -91,11 +93,12 @@ class  MyDatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    void updateBarang(int _id, String ket_barang_history, String tgl_barang_history, int update_jumlah_history, String dropdown){
+    void updateBarang(int _id, String nama_barang_history, String ket_barang_history, String tgl_barang_history, int update_jumlah_history, String dropdown){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
         cv.put(COLUMN_ID_HISTORY, _id);
+        cv.put(COLUMN_NAME_HISTORY, nama_barang_history);
         cv.put(COLUMN_DESC_HISTORY, ket_barang_history);
         cv.put(COLUMN_DATE_HISTORY, tgl_barang_history);
         cv.put(COLUMN_QUANTITY_HISTORY, update_jumlah_history);
@@ -120,7 +123,18 @@ class  MyDatabaseHelper extends SQLiteOpenHelper {
     }
 
     Cursor readAllDataHistory(){
-        String query = "SELECT ket_barang_history FROM " + TABLE_NAME_HISTORY;
+        String query = "SELECT * FROM " + TABLE_NAME_HISTORY;
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = null;
+        if(db != null){
+            cursor = db.rawQuery(query, null);
+        }
+        return cursor;
+    }
+
+    Cursor readDataHistoryById(int id){
+        String query = "SELECT * FROM " + TABLE_NAME_HISTORY + " WHERE _id = " + id;
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = null;

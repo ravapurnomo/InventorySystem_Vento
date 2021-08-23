@@ -40,7 +40,7 @@ public class AddActivity extends AppCompatActivity {
                         Integer.valueOf(quantity_input.getText().toString().trim()),
                         keterangan_input.getText().toString());
                 //Tambahan 1
-                id = myDB.selectID(namaBarang_input.getText().toString().trim());
+                /*id = myDB.selectID(namaBarang_input.getText().toString().trim());
                 id.moveToFirst();
                 index = id.getInt(0);
                 Date date = Calendar.getInstance().getTime();
@@ -50,7 +50,7 @@ public class AddActivity extends AppCompatActivity {
                 beginnningDropdownState = "New Entry";
                 MyDatabaseHelper myDB2 = new MyDatabaseHelper(AddActivity.this);
                 myDB2.addBarangHistory(index,Integer.valueOf(quantity_input.getText().toString().trim()),
-                        starterDesc,strDate,beginnningDropdownState);
+                        starterDesc,strDate,beginnningDropdownState);*/
             }
         });
     }

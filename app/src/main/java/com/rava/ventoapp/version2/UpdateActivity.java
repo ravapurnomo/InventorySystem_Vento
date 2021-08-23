@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,7 +29,7 @@ import java.util.Date;
 public class UpdateActivity extends AppCompatActivity {
 
     EditText id_barang, nama_barang, jumlah_barang, ket_barang;
-    Button okay_button;
+    Button okay_button, detail_button;
     Spinner dropdown;
 
     String id, nama, jumlah, keterangan;
@@ -44,6 +45,7 @@ public class UpdateActivity extends AppCompatActivity {
         jumlah_barang = findViewById(R.id.jumlah_barang2);
         ket_barang = findViewById(R.id.keterangan_input2);
         okay_button = findViewById(R.id.okay_button);
+        detail_button = findViewById(R.id.seedetail_button);
         dropdown = findViewById(R.id.static_spinner);
 
         //First we call this
@@ -98,15 +100,22 @@ public class UpdateActivity extends AppCompatActivity {
                 String strDate = dateFormat.format(date);
 
                 MyDatabaseHelper myDB = new MyDatabaseHelper(UpdateActivity.this);
-                myDB.updateBarang(idBarang, ketBarang, strDate, updateJumlah, dropdownHistory);
+                myDB.updateBarang(idBarang, namaBarang, ketBarang, strDate, updateJumlah, dropdownHistory);
+               /* myDB.addBarangHistory(idBarang,updateJumlah,ketBarang,strDate,dropdownHistory);*/
                 myDB.updateData(id, namaBarang, jumlahTotal, ketBarang);
 
 
             }
         });
-      /*  detail_button.setOnClickListener(
+        detail_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), HistoryActivity.class);
+                intent.putExtra("id", id);
+                startActivity(intent);
 
-        );*/
+            }
+        });
 /*        update_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

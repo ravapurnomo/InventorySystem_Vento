@@ -7,7 +7,7 @@
     tools:context="com.rava.ventoapp.version2.HistoryActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/recyclerView2"
         android:paddingTop="?attr/actionBarSize"
         android:layout_width="409dp"
         android:layout_height="729dp"

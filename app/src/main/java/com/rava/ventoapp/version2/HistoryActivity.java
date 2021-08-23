@@ -24,38 +24,39 @@ import java.util.ArrayList;
 
 public class HistoryActivity extends AppCompatActivity {
 
+    RecyclerView recyclerView;
 
-    TextView data_history;
-    Cursor keterangan_history;
     MyDatabaseHelper myDB;
-
-    //CustomAdapter customAdapter;
+    ArrayList<String> id_barang, nama_barang, jumlah_barang, ket_barang;
+    CustomAdapter customAdapter;
+    String idBarang="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
 
+        recyclerView = findViewById(R.id.recyclerView2);
+
         myDB = new MyDatabaseHelper(HistoryActivity.this);
+        id_barang = new ArrayList<>();
+        nama_barang = new ArrayList<>();
+        jumlah_barang = new ArrayList<>();
+        ket_barang = new ArrayList<>();
+        idBarang = getIntent().getStringExtra("id");
 
-        Cursor cursor = myDB.readAllDataHistory();
-        if(cursor.getCount() == 0){
-            while (cursor.moveToNext()){
-                data_history.setText(cursor.getString(0));
-            }
+
+        if (idBarang != null){
+            storeDataInArraysById();
+        } else{
+            storeDataInArrays();
         }
-
-       // storeDataInArrays();
-
-
-
-       /* customAdapter = new CustomAdapter(HistoryActivity.this,this,  ket_history);
+        customAdapter = new CustomAdapter(HistoryActivity.this, this, id_barang, nama_barang, jumlah_barang, ket_barang);
         recyclerView.setAdapter(customAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(HistoryActivity.this));*/
-
+        recyclerView.setLayoutManager(new LinearLayoutManager(HistoryActivity.this));
     }
 
-    /*@Override
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == 1){
@@ -63,75 +64,45 @@ public class HistoryActivity extends AppCompatActivity {
         }
     }
 
+    void storeDataInArraysById(){
+        Cursor cursor = myDB.readDataHistoryById(Integer.parseInt(idBarang));
+
+        int a = cursor.getCount();
+        if (a > 0) {
+            while (cursor.moveToNext()){
+                String idBarang = (cursor.getString(0));
+                String namaBarang = (cursor.getString(1));
+                String ketBarang = (cursor.getString(2));
+                String strDate = (cursor.getString(3));
+                String jumlahBarang = (cursor.getString(4));
+                String dropdown = (cursor.getString(5));
+
+                id_barang.add(idBarang);
+                nama_barang.add(namaBarang);
+                jumlah_barang.add(jumlahBarang);
+                ket_barang.add(dropdown);
+            }
+        }
+    }
+
     void storeDataInArrays(){
         Cursor cursor = myDB.readAllDataHistory();
-        if(cursor.getCount() == 0){
-            empty_imageview.setVisibility(View.VISIBLE);
-            no_data.setVisibility(View.VISIBLE);
-        }else{
+
+        int a = cursor.getCount();
+        if (a > 0) {
             while (cursor.moveToNext()){
-                //id_barang.add(cursor.getString(0));
-                ket_history.add(cursor.getString(0));
-                //jumlah_barang.add(cursor.getString(2));
-                //ket_barang.add(cursor.getString(3));
+                String idBarang = (cursor.getString(0));
+                String namaBarang = (cursor.getString(1));
+                String ketBarang = (cursor.getString(2));
+                String strDate = (cursor.getString(3));
+                String jumlahBarang = (cursor.getString(4));
+                String dropdown = (cursor.getString(5));
+
+                id_barang.add(idBarang);
+                nama_barang.add(namaBarang);
+                jumlah_barang.add(jumlahBarang);
+                ket_barang.add(dropdown);
             }
-            empty_imageview.setVisibility(View.GONE);
-            no_data.setVisibility(View.GONE);
         }
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.my_menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-*/
-    //@Override
-    /*public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.history_all){
-            data_history= findViewById(R.id.ket_history_txt);
-
-            MyDatabaseHelper myDB = new MyDatabaseHelper(HistoryActivity.this);
-            keterangan_history = myDB.readAllDataHistory();
-            if(keterangan_history!=null && keterangan_history.getCount()>0)
-            {
-                keterangan_history.moveToFirst();
-                do{
-                    list_ket_history = keterangan_history.getString(0);
-                    data_history.setText(list_ket_history);
-                }while (keterangan_history.moveToNext());
-            }
-            //Refresh Activity
-            Intent intent = new Intent(HistoryActivity.this, HistoryActivity.class);
-            startActivity(intent);
-            finish();
-
-        }
-        return super.onOptionsItemSelected(item);
-    }*/
-
-   /* void confirmDialog(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Hapus semua?");
-        builder.setMessage("Apakah Anda yakin akan menghapus semua Data?");
-        builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                MyDatabaseHelper myDB = new MyDatabaseHelper(HistoryActivity.this);
-                myDB.deleteAllData();
-                //Refresh Activity
-                Intent intent = new Intent(HistoryActivity.this, HistoryActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-        builder.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-
-            }
-        });
-        builder.create().show();
-    }*/
 }

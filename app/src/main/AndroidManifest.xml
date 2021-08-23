@@ -16,6 +16,9 @@
             android:name="com.rava.ventoapp.version2.AddActivity"
             android:label="Tambah Barang"
             android:parentActivityName="com.rava.ventoapp.version2.MainActivity" />
+        <activity android:name="com.rava.ventoapp.version2.HistoryActivity"
+            android:label="History Barang"
+            android:parentActivityName="com.rava.ventoapp.version2.MainActivity"/>
         <activity
             android:name="com.rava.ventoapp.version2.MainActivity"
             android:label="Vento by PINS Jabar">
